@@ -1,6 +1,6 @@
 export class Welcome{
   constructor(){
-    this.heading = 'Test prototype';
+    this.heading = 'Test';
     this.firstName = 'Vadimir';
     this.lastName = 'Alexeev';
   }

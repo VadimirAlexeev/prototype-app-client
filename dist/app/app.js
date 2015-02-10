@@ -13,7 +13,7 @@ System.register([], function (_export) {
         function Welcome() {
           _classCallCheck(this, Welcome);
 
-          this.heading = "Test prototype";
+          this.heading = "Test";
           this.firstName = "Vadimir";
           this.lastName = "Alexeev";
         }

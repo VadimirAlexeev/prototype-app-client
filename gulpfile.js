@@ -23,8 +23,8 @@ var path = {
   style:'src/styles/**/*.css',
   output:'dist/',
   doc:'./doc',
-  // e2eSpecsSrc: 'test/e2e/src/*.js',
-  // e2eSpecsDist: 'test/e2e/dist/'
+  e2eSpecsSrc: 'src/test_e2e/src/*.js',
+  e2eSpecsDist: 'src/test_e2e/dist/'
 };
 
 var compilerOptions = {
@@ -115,23 +115,23 @@ gulp.task('build', function(callback) {
   );
 });
 
-// gulp.task('webdriver_update', webdriver_update);
+gulp.task('webdriver_update', webdriver_update);
 
-// gulp.task('build-e2e', function () {
-//   return gulp.src(path.e2eSpecsSrc)
-//     .pipe(plumber())
-//     .pipe(to5())
-//     .pipe(gulp.dest(path.e2eSpecsDist));
-// });
+gulp.task('build-e2e', function () {
+  return gulp.src(path.e2eSpecsSrc)
+    .pipe(plumber())
+    .pipe(to5())
+    .pipe(gulp.dest(path.e2eSpecsDist));
+});
 
-// gulp.task('e2e', ['webdriver_update', 'build-e2e'], function(cb) {
-//   return gulp.src(path.e2eSpecsDist + "/*.js")
-//   .pipe(protractor({
-//       configFile: "protractor.conf.js",
-//       args: ['--baseUrl', 'http://127.0.0.1:9000']
-//   }))
-//   .on('error', function(e) { throw e; });
-// });
+gulp.task('e2e', ['webdriver_update', 'build-e2e'], function(cb) {
+  return gulp.src(path.e2eSpecsDist + "/*.js")
+  .pipe(protractor({
+      configFile: "protractor.conf.js",
+      args: ['--baseUrl', 'http://127.0.0.1:9000']
+  }))
+  .on('error', function(e) { throw e; });
+});
 
 gulp.task('update-own-deps', function(){
   tools.updateOwnDependenciesFromLocalRepositories();
